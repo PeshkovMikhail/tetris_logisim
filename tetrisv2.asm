@@ -36,8 +36,9 @@ mainloop:
 			ldi r1, tempX
 			ld r1, r2
 			ldi r0, x
-			st r0, r1
+			st r0, r2
 		fi
+		ldi r3, 0
 		jsr draw		
 		br mainloop
 	fi
@@ -91,10 +92,10 @@ moveDown:
 	if
 		tst r3
 	is nz
-		# ldi r0, y
-		# ld r0, r1
-		# dec r1
-		# st r0, r1
+		ldi r0, y
+		ld r0, r1
+		dec r1
+		st r0, r1
 		jsr union
 		jsr getNew
 		ldi r0, status
