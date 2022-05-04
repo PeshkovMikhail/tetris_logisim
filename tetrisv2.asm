@@ -111,6 +111,38 @@ union:
 	jsr writeFig
 	ldi r1, 0
 	st r0, r1
+	ldi r0, dataOut
+	ld r0, r2
+	if
+		tst r2
+	is nz
+		ldi r1, score
+		ld r1, r0
+		if
+			ldi r3, 1
+			cmp r3, r2
+		is z
+			ldi r3, 1
+		else
+			if
+				ldi r3, 2
+				cmp r3, r2
+			is z
+				ldi r3, 3			
+			else
+				if
+					ldi r3, 3
+					cmp r3, r2
+				is z
+					ldi r3, 7
+				else
+					ldi r3, 15
+				fi
+			fi
+		fi
+		add r3, r0
+		st r1, r0	
+	fi
 	rts
 
 draw:
