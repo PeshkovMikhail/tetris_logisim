@@ -77,10 +77,6 @@ writeFig:
 	ld r1, r3
 	ld r1, r3
 	ld r1, r3
-	ld r1, r3
-	ld r1, r3
-	ld r1, r3
-	ld r1, r3
 	rts
 	
 moveDown:
@@ -108,7 +104,17 @@ union:
 	ldi r0, control
 	ldi r1, 0b01100010
 	st r0, r1
-	jsr writeFig
+	
+	ldi r1, dataOut
+	ld r1, r3
+	ld r1, r3
+	ld r1, r3
+	ld r1, r3
+	ld r1, r3
+	ld r1, r3
+	ld r1, r3
+	ld r1, r3
+	
 	ldi r1, 0
 	st r0, r1
 	ldi r0, dataOut
@@ -163,7 +169,7 @@ rotate:
 	if
 		tst r3
 	is nz
-		ldi r1, 0b10000000
+		ldi r1, 0b10000111
 		st r0, r1
 		jsr read
 	fi
