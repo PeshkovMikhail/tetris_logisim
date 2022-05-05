@@ -58,6 +58,14 @@ getNew:
 	ldi r0, y
 	ldi r1, 0
 	st r0, r1
+	jsr check
+	if
+		tst r3
+	is nz
+		halt
+	fi	
+	ldi r1, 0
+	st r0, r1
 	rts
 
 check:
