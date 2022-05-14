@@ -1,0 +1,35 @@
+\documentclass[14 pt, a4paper, leqno, oneside]{extreport}
+\usepackage[utf8]{inputenc}
+\usepackage{subfiles}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+\usepackage[includeheadfoot=true]{geometry}
+\geometry{a4paper,
+	total={170mm,257mm},left=1.5cm,right=2cm,
+	top=0cm,bottom=2cm}
+
+\title{Tetris}
+\author{Mikhail Peshkov \\ Vyacheslav Chelondaev \\ Sayan Radnaev}
+\date{2022}
+
+\begin{document}
+	
+	\maketitle
+	\newpage
+	\tableofcontents
+	\newpage
+	\subfile{overview}
+	\chapter{Hardware}
+	\subfile{display}
+	\subfile{main_plate}
+	\chapter{Software}
+	
+\end{document}

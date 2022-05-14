@@ -1,13 +1,30 @@
 \documentclass[12pt, a4paper, twoside]{article}
 \usepackage[utf8]{inputenc}
 
-\title{Co-design Group Project \newline "The Game of Tetris"}
-\author{Mikhail Peshkov, Vyacheslav Chelondaev, Sayan Radnaev}
-\date{2022}
-
 \begin{document}
-\maketitle
+\begin{titlepage}
+    \begin{center}
+        \Large{
+            \textbf {
+            Co-design Group project \linebreak
+            "The Game of Tetris"
+        }
+        } 
+        \vspace{}
+        Mikhail Peshkov \linebreak
+        Vyacheslav Chelondaev \linebreak
+        Sayan Radnaev
+    \end{center}
+    \vspace{\fill}
+    \begin{center}
+        2022
+    \end{center}
+\end{titlepage}
 \newpage
+\setcounter{page}{1}
 \section{Overview}
 Hello, world
+
+\section{Display}
+This project uses a display written in Java. The display resolution is 17x20, the number of colors is 4. There are 40 32-bit inputs on the left and right sides, but only the upper 17 bits are used for rendering. A mixture of left and right inputs at the same level forms a display line.
 \end{document}
