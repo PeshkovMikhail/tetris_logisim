@@ -3,6 +3,7 @@
 \usepackage{multirow}
 \begin{document}
 	\section{Main chip}
+	Main chip has 3 1-bit inputs for the keyboard, 1 1-bit output for the end of the game, and 6 4-bit outputs to display the score.
 	\subsection{IO addresses}
 	\begin{center}
 		\begin{tabular}{|c | c | c|}
@@ -27,17 +28,40 @@
 			\hline
 		\end{tabular}
 	\end{center}
-	Addresses 0xf0 to 0xf7 are reserved for I/O.  Addresses from 0xf8 to 0xff are reserved for the stack.
+
+
+	Addresses 0xf0 to 0xf7 are reserved for I/O.  Addresses from 0xf8 to 0xff are reserved for the stack. Working with addresses that have the ability to read and write is described in the \hyperref[sec:ioreg]{\textbf{ioreg}} chip.
 	\subsection{Control register}
 	
+	
+	This register activates field and figure chips and controls them.
+	\begin{center}
+		\begin{tabular}{|c | c | p{10cm}|}
+			\hline
+			Name & Receiver & Purpose \\
+			\hline
+			csFig & figure & enable figure chip \\ 
+			\hline
+			csField & field & enable field chip \\
+			\hline
+			getNew & figure &  return next figure sprite \\
+			\hline
+			rotate & figure & return next turn sprite \\
+			\hline
+			check & field & command to check the coordinates of a figure and its position on the field \\
+			\hline
+			union & field & command to union a figure with a field \\
+			\hline
+			draw & field & command to draw a figure on the LCD \\
+			\hline
+			back & figure & return previous turn sprite \\
+			\hline
+		\end{tabular}
+	\end{center}
 	\subsection{Keyboard}
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width=8cm]{keyboard}
-		\label{fig:img2}
-		\caption{Keyboard}
-	\end{figure}
-	This part of the chip has 3 inputs, each of which is responsible for the movement of the figure: left, turn, right. When one of the inputs receives a logical unit, the value corresponding to the purpose of the input is written to the register in accordance with the table. The register value is cleared after the Cdm-8 reads its value.
+	
+	
+	This part of the chip has 3 inputs, each of which is responsible for the movement of the figure: left, turn, right. When one of the inputs receives a logical one, the value corresponding to the purpose of the input is written to the register in accordance with the table. The register value is cleared after the Cdm-8 reads its value.
 	\begin{center}
 		\begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|}
 			\hline
@@ -49,4 +73,6 @@
 			\hline
 		\end{tabular}
 	\end{center}
+	\subsection{Game over}
+	When it is no longer possible to take the next figure, the program ends. The address of the last command is 0x54. When Cdm-8 reaches it, a logical one appears at the output of gameOver.
 \end{document}

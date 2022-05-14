@@ -1,0 +1,9 @@
+\documentclass[./main.tex]{subfiles}
+\graphicspath{{\subfix{images/}}}
+\begin{document}
+	\section{fieldCell chip}
+	
+	The fieldCell chip has 9 inputs: xRow - the sprite row shifted to the X coordinate, y - the current y value, id - the id value for this chip, clrMap - a bit string containing the id of the chips in the format of descending high bits, lastIn - the previous line of the field, clk - clock frequency, check - command to check xRow for intersection with field, union - command to merge xRow with field, full - command to clear rows specified in clrMap. Also this chip has 10 outputs. Most of them just send the same data that the inputs receive. The exception is idNext - it increments the current id by 1 and the full and fail outputs. full produces a logical one if the value of the register holding the string becomes 0xffc00000 which corresponds to 10 binary ones. Due to the structure of the \hyperref[sec:field]{\textbf{field}} chip, if this output is raised in at least one chip, then its value will come to all the others. The output of fail is a logical one if there is an overlapping xRow intersection with the current row.
+	
+	When the chip id matches the y value, the cs tunnel is activated. If cs is enabled and a union command is issued, and full is omitted, then the register value and xRow are combined. If full is raised and the chip id is less than or equal to y, then the lastIn value is written to the register. Thus, the field is cleared of filled lines in 8 cycles. Since there are only 4 lines in each sprite, 2 cycles are allocated for each line: the first for writing the value to the register, the second for clearing the lines if full is raised.
+\end{document}
